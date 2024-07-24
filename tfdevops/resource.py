@@ -286,6 +286,10 @@ class Lambda(Translator):
             cfr["VpcConfig"].pop("VpcId")
         cfr.pop("CodeSha256", None)
         cfr.pop("QualifiedInvokeArn", None)
+        if "LoggingConfig" in cfr and isinstance(cfr["LoggingConfig"], list):
+            cfr["LoggingConfig"] = cfr["LoggingConfig"][0]
+        if "EphemeralStorage" in cfr and isinstance(cfr["EphemeralStorage"], list):
+            cfr["EphemeralStorage"] = cfr["EphemeralStorage"][0]
         return cfr
 
 
