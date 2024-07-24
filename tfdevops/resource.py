@@ -284,6 +284,8 @@ class Lambda(Translator):
         cfr["Tags"] = self.get_tags(tfr["values"].get("Tags", {}))
         if "VpcConfig" in cfr:
             cfr["VpcConfig"].pop("VpcId")
+        cfr.pop("CodeSha256", None)
+        cfr.pop("QualifiedInvokeArn", None)
         return cfr
 
 
